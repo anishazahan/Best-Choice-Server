@@ -1,15 +1,24 @@
 const app = require("./app");
 const dotenv = require('dotenv');
+const cors = require('cors');
+const connectDatabase = require('./config/database')
+
+app.use(cors())
 
 // config 
+dotenv.config();
 
-dotenv.config({path:"server/config/config.env"})
+
+// connect database 
+connectDatabase();
+ 
+
+const PORT =process.env.PORT || 4000;
 
 
-app.get("/user",(req,res)=>{
-    res.send("user found")
-})
+// const port = process.env;
+// console.log(port.PORT);
 
 app.listen(process.env.PORT,()=>{
-    console.log("server is running")
+    console.log(`server is running http://localhost:${PORT}`)
 })
